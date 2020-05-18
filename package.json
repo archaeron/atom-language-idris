@@ -1,13 +1,16 @@
 {
   "name": "language-idris",
-  "main": "./lib/language-idris",
+  "main": "./dist/language-idris",
   "version": "0.6.0",
   "private": true,
   "description": "A plugin for developing with Idris",
   "repository": "https://github.com/idris-hackers/atom-language-idris",
   "license": "MIT",
+  "scripts": {
+    "install": "tsc -p ./lib"
+  },
   "engines": {
-    "atom": ">=0.180.0"
+    "atom": ">=1.31.0"
   },
   "contributors": [
     {
@@ -31,6 +34,29 @@
       "url": "https://edwinb.wordpress.com/"
     }
   ],
+  "configSchema": {
+    "pathToIdris": {
+      "title": "Idris Location",
+      "type": "string",
+      "default": "idris",
+      "description": "Location of the Idris executable (e.g. /usr/local/bin/idris)"
+    },
+    "panelFontFamily": {
+      "type": "string",
+      "default": "",
+      "description": "The font family to use in the various idris panels"
+    },
+    "panelFontSize": {
+      "type": "number",
+      "default": 13,
+      "description": "The font size to use in the various idris panels"
+    },
+    "panelFontLigatures": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable ligatures in the various idris panels"
+    }
+  },
   "providedServices": {
     "autocomplete.provider": {
       "versions": {
@@ -40,11 +66,18 @@
   },
   "consumedServices": {},
   "dependencies": {
+    "@cycle/core": "3.1.0",
+    "@cycle/dom": "5.3.0",
     "atom-message-panel": "^1.3.0",
     "bennu": "17.3.0",
     "nu-stream": "3.3.1",
-    "rx-lite": "4.0.0",
-    "@cycle/core": "3.1.0",
-    "@cycle/dom": "5.3.0"
+    "rx-lite": "4.0.8",
+    "tslib": "1.11.1",
+    "typescript": "3.9.2"
+  },
+  "devDependencies": {
+    "prettier": "2.0.5",
+    "@types/atom": "1.40.4",
+    "@types/rx-lite": "4.0.6"
   }
 }
